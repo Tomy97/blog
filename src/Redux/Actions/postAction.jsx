@@ -1,6 +1,7 @@
 export const delete_post = "delete_post";
 export const add_post = "add_post";
 export const edit_post = "edit_post";
+export const get_posts = "get_posts";
 
 export const delete_post_action = (id) => {
   return {
@@ -8,6 +9,12 @@ export const delete_post_action = (id) => {
     payload: id,
   };
 };
+
+export const get_posts_action = () => {
+  return {
+    type: get_posts,
+  };
+}
 
 export const add_post_action = (data) => {
   return {

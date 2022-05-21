@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import useFetch from '../Hooks/useFetch'
-import { Toast } from '../alerts'
+import { Toast } from '../Hooks/useAlerts'
 import Swal from 'sweetalert2'
 import { Table } from 'react-bootstrap'
+
 const TableComponent = (props) => {
     const { state, setStatus } = useFetch()
     const [valid, setValid] = useState(false)
-
 
     const trash = {
         color: "#F00000",
@@ -72,6 +72,8 @@ const TableComponent = (props) => {
             allowOutsideClick: true,
         });
     };
+
+    console.log(state);
     return (
         <>
             <Table responsive hover>
@@ -82,10 +84,10 @@ const TableComponent = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {state.data.map((props) => (
+                    {state.data ? state.data.map((props) => (
                         <tr key={props.id}>
                             <td value={props.title}
-                                onChange={props.handleChange} >{props.id}</td>
+                                onChange={props.handleChange}>{props.id}</td>
                             <td value={props.body}
                                 onChange={props.handleChange}>{props.title}</td>
                             <td>
@@ -110,7 +112,9 @@ const TableComponent = (props) => {
                                 ></i>
                             </td>
                         </tr>
-                    ))}
+                    )) : <h2>
+                        No hay posts
+                    </h2>}
                 </tbody>
             </Table>
         </>

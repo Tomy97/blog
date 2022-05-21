@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Toast } from "../../alerts";
+import { Toast } from "../../Hooks/useAlerts";
 import TableComponent from "../../Components/Table";
 
 const Home = (props) => {

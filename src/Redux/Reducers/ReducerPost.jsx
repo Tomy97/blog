@@ -1,4 +1,4 @@
-import { delete_post, add_post, edit_post } from "../actions/postActions";
+import { delete_post, add_post, edit_post, get_posts } from "../actions/postActions";
 
 const initialState = {
   posts: [],
@@ -6,6 +6,12 @@ const initialState = {
 
 const blog_posts = (state = initialState, action) => {
   switch (action.type) {
+    case get_posts: {
+      return {
+        ...state,
+        posts: action.payload,
+      };
+    }
     case delete_post: {
       return {
         ...state,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Form, Row, Button } from 'react-bootstrap'
-import { Toast } from "../../alerts";
+import { Toast } from "../../Hooks/useAlerts";
 const CreateForm = () => {
     const [title, setTitle] = useState('')
     const [contents, setContents] = useState('')
