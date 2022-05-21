@@ -84,7 +84,7 @@ const TableComponent = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {state.data ?  state.data.map((props) => (
+                    {state.data ? state.data.map((props) => (
                         <tr key={props.id}>
                             <td value={props.title}
                                 onChange={props.handleChange}>{props.id}</td>
