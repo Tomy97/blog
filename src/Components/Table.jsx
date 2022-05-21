@@ -59,10 +59,7 @@ const TableComponent = (props) => {
                 title: `El dato seleccionado se actualizo correctamente`,
                 allowOutsideClick: true,
             });
-            console.log(changeData);
         }
-        console.log(formValues);
-        console.log(props);
     };
 
     const fireDetails = (detailsPost) => {
@@ -72,8 +69,6 @@ const TableComponent = (props) => {
             allowOutsideClick: true,
         });
     };
-
-    console.log(state);
     return (
         <>
             <Table responsive hover>
