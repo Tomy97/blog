@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { delete_post_action, get_post_action } from '../Redux/Actions/postAction'
 
 const TableComponent = (props) => {
-    const posts = useSelector((state) => state.posts.posts)
+    const { posts } = useSelector((state) => state.posts)
     const dispatch = useDispatch()
 
     useEffect(() => {
