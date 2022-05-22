@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react'
-import { Toast } from '../Hooks/useAlerts'
-import Swal from 'sweetalert2'
 import { Row, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { delete_post_action, get_post_action } from '../Redux/Actions/postAction'
@@ -13,45 +11,10 @@ const TableComponent = (props) => {
         dispatch(get_post_action())
     }, [dispatch])
 
-    const fireFormEdit = async (props) => {
-        const { value: formValues } = await Swal.fire({
-            title: "Editar formulario",
-            html: `
-            <label> Titulo </label>
-            <textarea id="swal-input1" class="swal2-input" cols="40" rows="20"> ${props.title} </textarea>
-            <label> Detalle </label>
-            <textarea id="swal-input2" class="swal2-input" cols="40" rows="20"> ${props.body} </textarea>
-            `,
-            focusConfirm: false,
-            showConfirmButton: true,
-            backdrop: false,
-            position: "center",
-            confirmButtonText: "Guardar",
-            preConfirm: () => {
-                return [
-                    document.getElementById("swal-input1").value,
-                    document.getElementById("swal-input2").value,
-                ];
-            },
+    // Agregar una funcion para editar un post que lo haga desde el estado 
 
-        });
-        if (formValues) {
-            JSON.stringify(formValues);
-            Toast.fire({
-                icon: "success",
-                title: `El dato seleccionado se actualizo correctamente`,
-                allowOutsideClick: true,
-            });
-        }
-    };
+    // Agregar una funcion para ver un post que lo haga desde el estado
 
-    const fireDetails = (detailsPost) => {
-        Swal.fire({
-            title: "Detalles",
-            text: detailsPost.body,
-            allowOutsideClick: true,
-        });
-    };
     return (
         <Row className="py-5" >
             <Table responsive striped bordered hover variant="dark">
@@ -74,13 +37,13 @@ const TableComponent = (props) => {
                             <td>
                                 <i
                                     className="fas fa-ellipsis-h d-flex justify-content-center"
-                                    onClick={() => fireDetails(props)}
+                                    onClick={() => (props)}
                                 ></i>
                             </td>
                             <td>
                                 <i
                                     className="far fa-edit d-flex justify-content-center text-primary"
-                                    onClick={() => fireFormEdit(props)}
+                                    onClick={() => (props)}
                                 ></i>
                             </td>
                             <td>
