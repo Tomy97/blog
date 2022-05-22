@@ -5,11 +5,12 @@ export const add_post = "add_post";
 export const edit_post = "edit_post";
 export const get_posts = "get_posts";
 
-export const delete_post_action = (id) => {
-  return {
+export const delete_post_action = (id) => async dispatch => {
+  const res = await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`);
+  dispatch({
     type: delete_post,
-    payload: id,
-  };
+    payload: res.data,
+  });
 };
 
 export const get_post_action = () => async dispatch => {

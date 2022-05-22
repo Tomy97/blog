@@ -57,34 +57,32 @@ const CreateForm = () => {
     useEffect(fireAlertMessage, [alertMessage]);
     useEffect(fireSuccesMeesage, [successMessage])
     return (
-        <>
-            <Row className='d-flex justify-content-center'>
-                <Card style={{ width: '20rem' }} >
-                    <Card.Body>
-                        <Card.Title className="text-center">Formulario de Creación</Card.Title>
-                        <Form onSubmit={onSubmitForm} >
-                            <Form.Group>
-                                <Form.Label>
-                                    Titulo
-                                </Form.Label>
-                                <Form.Control type="text" placeholder="Ingrese un titulo" onChange={(v) => setTitle(v.target.value)} value={title} />
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Label>
-                                    Contenido
-                                </Form.Label>
-                                <Form.Control as="textarea" type="text" placeholder="Ingrese un contenido" rows={3} onChange={(v) => setContents(v.target.value)} value={contents} />
-                            </Form.Group>
-                            <Form.Group className="d-flex justify-content-end">
-                                <Button type='submit' onClick={onSubmitForm} >
-                                    Guardar
-                                </Button>
-                            </Form.Group>
-                        </Form>
-                    </Card.Body>
-                </Card>
-            </Row>
-        </>
+        <Row className='d-flex justify-content-center py-5'>
+            <Card style={{ width: '20rem' }} >
+                <Card.Body>
+                    <Card.Title className="text-center">Formulario de Creación</Card.Title>
+                    <Form onSubmit={onSubmitForm} >
+                        <Form.Group>
+                            <Form.Label>
+                                Titulo
+                            </Form.Label>
+                            <Form.Control type="text" placeholder="Ingrese un titulo" onChange={(v) => setTitle(v.target.value)} value={title} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>
+                                Contenido
+                            </Form.Label>
+                            <Form.Control as="textarea" type="text" placeholder="Ingrese un contenido" rows={3} onChange={(v) => setContents(v.target.value)} value={contents} />
+                        </Form.Group>
+                        <Form.Group className="d-flex justify-content-end">
+                            <Button type='submit' onClick={onSubmitForm} >
+                                Guardar
+                            </Button>
+                        </Form.Group>
+                    </Form>
+                </Card.Body>
+            </Card>
+        </Row>
     )
 }
 

@@ -1,39 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Toast } from '../Hooks/useAlerts'
 import Swal from 'sweetalert2'
-import { Table } from 'react-bootstrap'
+import { Row, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { get_post_action } from '../Redux/Actions/postAction'
+import { delete_post_action, get_post_action } from '../Redux/Actions/postAction'
 
 const TableComponent = (props) => {
     const posts = useSelector((state) => state.posts.posts)
     const dispatch = useDispatch()
-    const [setValid] = useState(false)
 
     useEffect(() => {
         dispatch(get_post_action())
     }, [dispatch])
 
-    const trash = {
-        color: "#F00000",
-    };
-    const editIcon = {
-        color: "#00459C",
-    };
-
-    const onRemove = (selectedPost) => {
-        const data = posts.filter((post) => post.id !== selectedPost.id);
-        let newState = { ...posts };
-        newState.data = data;
-        if (newState) {
-            setValid(true);
-            Toast.fire({
-                icon: "success",
-                title: `La data seleccionada se elimino correctamente`,
-                allowOutsideClick: true,
-            });
-        }
-    };
     const fireFormEdit = async (props) => {
         const { value: formValues } = await Swal.fire({
             title: "Editar formulario",
@@ -73,17 +52,16 @@ const TableComponent = (props) => {
             allowOutsideClick: true,
         });
     };
-
-    if (posts.length === 0) {
-        console.log('No hay datos');
-    }
     return (
-        <>
-            <Table responsive hover>
+        <Row className="py-5" >
+            <Table responsive striped bordered hover variant="dark">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Titulo</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -101,17 +79,14 @@ const TableComponent = (props) => {
                             </td>
                             <td>
                                 <i
-                                    className="far fa-edit d-flex justify-content-center"
+                                    className="far fa-edit d-flex justify-content-center text-primary"
                                     onClick={() => fireFormEdit(props)}
-                                    style={editIcon}
                                 ></i>
                             </td>
                             <td>
                                 <i
-                                    edge="end"
-                                    className="fas fa-trash d-flex justify-content-center"
-                                    onClick={() => onRemove(props)}
-                                    style={trash}
+                                    className="fas fa-trash d-flex justify-content-center text-danger"
+                                    onClick={() => dispatch(delete_post_action(props.id))}
                                 ></i>
                             </td>
                         </tr>
@@ -120,7 +95,7 @@ const TableComponent = (props) => {
                     </h2>}
                 </tbody>
             </Table>
-        </>
+        </Row>
     )
 }
 

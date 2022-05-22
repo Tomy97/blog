@@ -2,16 +2,11 @@ import React from 'react'
 import { Nav } from 'react-bootstrap'
 
 const NavigationBar = () => {
-    const a = {
-        color: '#000000',
-    }
     return (
-        <Nav className="mr-auto bg-light" >
-            <Nav.Link href="/" style={a} >Home</Nav.Link>
-            <Nav.Link href="/form" style={a} >Creacion De Formulario</Nav.Link>
+        <Nav className="mr-auto bg-dark" >
+            <Nav.Link className='text-white' href="/" >Home</Nav.Link>
+            <Nav.Link className='text-white text-capitalize' href="/form" >Crear un post</Nav.Link>
         </Nav>
-
-
     )
 }
 
