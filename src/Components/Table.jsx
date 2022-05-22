@@ -20,8 +20,8 @@ const TableComponent = (props) => {
             <Table responsive striped bordered hover variant="dark">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Titulo</th>
+                        <th className="text-center" >Id</th>
+                        <th className="text-center" >Titulo</th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -31,7 +31,7 @@ const TableComponent = (props) => {
                     {posts ? posts.map((props) => (
                         <tr key={props.id}>
                             <td value={props.title}
-                                onChange={props.handleChange}>{props.id}</td>
+                                onChange={props.handleChange} className="text-center" >{props.id}</td>
                             <td value={props.body}
                                 onChange={props.handleChange}>{props.title}</td>
                             <td>
