@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const delete_post = "delete_post";
 export const add_post = "add_post";
 export const edit_post = "edit_post";
@@ -10,10 +12,12 @@ export const delete_post_action = (id) => {
   };
 };
 
-export const get_posts_action = () => {
-  return {
+export const get_post_action = () => async dispatch => {
+  const { data } = await axios.get('https://jsonplaceholder.typicode.com/posts?_page=1&_limit=10')
+  dispatch({
     type: get_posts,
-  };
+    payload: data,
+  })
 }
 
 export const add_post_action = (data) => {

@@ -1,26 +1,30 @@
-import React, { useState } from 'react'
-import useFetch from '../Hooks/useFetch'
+import React, { useEffect, useState } from 'react'
 import { Toast } from '../Hooks/useAlerts'
 import Swal from 'sweetalert2'
 import { Table } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { get_post_action } from '../Redux/Actions/postAction'
 
 const TableComponent = (props) => {
-    const { state, setStatus } = useFetch()
-    const [valid, setValid] = useState(false)
+    const posts = useSelector((state) => state.posts.posts)
+    const dispatch = useDispatch()
+    const [setValid] = useState(false)
+
+    useEffect(() => {
+        dispatch(get_post_action())
+    }, [dispatch])
 
     const trash = {
         color: "#F00000",
     };
-
     const editIcon = {
         color: "#00459C",
     };
 
     const onRemove = (selectedPost) => {
-        const data = state.data.filter((post) => post.id !== selectedPost.id);
-        let newState = { ...state };
+        const data = posts.filter((post) => post.id !== selectedPost.id);
+        let newState = { ...posts };
         newState.data = data;
-        setStatus(newState);
         if (newState) {
             setValid(true);
             Toast.fire({
@@ -53,7 +57,7 @@ const TableComponent = (props) => {
 
         });
         if (formValues) {
-            const changeData = JSON.stringify(formValues);
+            JSON.stringify(formValues);
             Toast.fire({
                 icon: "success",
                 title: `El dato seleccionado se actualizo correctamente`,
@@ -69,6 +73,10 @@ const TableComponent = (props) => {
             allowOutsideClick: true,
         });
     };
+
+    if (posts.length === 0) {
+        console.log('No hay datos');
+    }
     return (
         <>
             <Table responsive hover>
@@ -79,7 +87,7 @@ const TableComponent = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {state.data ? state.data.map((props) => (
+                    {posts ? posts.map((props) => (
                         <tr key={props.id}>
                             <td value={props.title}
                                 onChange={props.handleChange}>{props.id}</td>
