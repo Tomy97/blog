@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Row, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { delete_post_action, get_post_action } from '../Redux/Actions/postAction'
+import { delete_post_action, edit_post_action, get_post_action } from '../Redux/Actions/postAction'
 
 const TableComponent = (props) => {
     const { posts } = useSelector((state) => state.posts)
@@ -20,8 +20,8 @@ const TableComponent = (props) => {
             <Table responsive striped bordered hover variant="dark">
                 <thead>
                     <tr>
-                        <th className="text-center" >Id</th>
-                        <th className="text-center" >Titulo</th>
+                        <th className="text-center">Id</th>
+                        <th className="text-center">Titulo</th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -43,7 +43,7 @@ const TableComponent = (props) => {
                             <td>
                                 <i
                                     className="far fa-edit d-flex justify-content-center text-primary"
-                                    onClick={() => (props)}
+                                    onClick={() => dispatch(edit_post_action(props, props.id))}
                                 ></i>
                             </td>
                             <td>
