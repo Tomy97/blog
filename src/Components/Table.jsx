@@ -11,10 +11,6 @@ const TableComponent = (props) => {
         dispatch(get_post_action())
     }, [dispatch])
 
-    // Agregar una funcion para editar un post que lo haga desde el estado 
-
-    // Agregar una funcion para ver un post que lo haga desde el estado
-
     return (
         <Row className="py-5" >
             <Table responsive striped bordered hover variant="dark">
@@ -49,7 +45,7 @@ const TableComponent = (props) => {
                             <td>
                                 <i
                                     className="fas fa-trash d-flex justify-content-center text-danger"
-                                    onClick={() => dispatch(delete_post_action(props.id))}
+                                    onClick={() => dispatch(delete_post_action(props, props.id))}
                                 ></i>
                             </td>
                         </tr>
